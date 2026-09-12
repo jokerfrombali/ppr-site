@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+"""Карта соответствия старых адресов pprpro.ru новой структуре (301)."""
+MAP = [
+ ('/index.html', '/'),
+ ('/pprk.html', '/pprk/'),
+ ('/oati-order.html', '/oati/ppr-dlya-ordera/'),
+ ('/price-list.html', '/ceny/'),
+ ('/primer.html', '/primery-ppr/'),
+ ('/faq.html', '/faq/'),
+ ('/contacts.html', '/kontakty/'),
+ ('/ppr-po-razdelam/ppr_visota.html', '/ppr/raboty-na-vysote/'),
+ ('/ppr-po-razdelam/ppr-na-krovlu.html', '/ppr/krovlya/'),
+ ('/ppr-po-razdelam/ppr-na-montazh-metallokonstrukcij.html', '/ppr/montazh-metallokonstrukcij/'),
+ ('/ppr-po-razdelam/ppr-na-demontazh.html', '/ppr/demontazh/'),
+ ('/ppr-po-razdelam/ppr-na-seti.html', '/ppr/naruzhnye-seti/'),
+ ('/ppr-po-razdelam/ppr-na-otdelku.html', '/ppr/otdelochnye-raboty/'),
+ ('/ppr-po-razdelam/ppr_zemlyanie_raboty.html', '/ppr/zemlyanye-raboty/'),
+ ('/ppr-po-razdelam/ppr_fundament.html', '/ppr/fundament/'),
+ ('/ppr-po-razdelam/ppr-na-fasad.html', '/ppr/fasadnye-raboty/'),
+ ('/ppr-po-razdelam/ppr-na-kladku.html', '/ppr/kamennye-raboty/'),
+ ('/ppr-po-razdelam/ppr_motolit.html', '/ppr/betonnye-raboty/monolitnye-konstrukcii/'),
+ ('/ppr-po-razdelam/ppr-na-elektromontazh.html', '/ppr/elektromontazhnye-raboty/'),
+ ('/ppr-po-razdelam/ppr-na-stroitelnye-lesa.html', '/ppr/stroitelnye-lesa/'),
+ ('/ppr-po-razdelam/ppr_avtodoroga.html', '/ppr/avtodorogi/'),
+ ('/ppr-po-razdelam/ppr-na-montazh-okon.html', '/ppr/okna-vitrazhi/'),
+ ('/podval/politic.html', '/politika-konfidencialnosti/'),
+ ('/podval/soglasie.html', '/soglasie-na-obrabotku/'),
+]
