@@ -4,7 +4,7 @@
 
 ## 👉 Открыть сайт
 
-**https://jokerfrombali.github.io/ppr-pro-site/**
+**https://jokerfrombali.github.io/ppr-site/**
 
 ## Что в репозитории
 
@@ -67,7 +67,7 @@ cd source
 python3 build.py                    # → source/dist/
 
 # версия для GitHub Pages (ссылки с префиксом, формы без PHP)
-OUT=dist-pages BASE=rel SITE=https://jokerfrombali.github.io/ppr-pro-site \
+OUT=dist-pages BASE=rel SITE=https://jokerfrombali.github.io/ppr-site \
 FORM_ACTION=/spasibo/ FORM_METHOD=get python3 build.py
 
 # посмотреть локально

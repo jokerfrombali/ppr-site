@@ -3,4 +3,4 @@ Disallow: /send.php
 Disallow: /spasibo/
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&ysclid&from
 
-Sitemap: https://jokerfrombali.github.io/ppr-pro-site/sitemap.xml
+Sitemap: https://jokerfrombali.github.io/ppr-site/sitemap.xml

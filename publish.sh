@@ -1,7 +1,7 @@
 #!/bin/bash
 # Публикация сайта в GitHub. Запуск: bash publish.sh [имя-репозитория]
 set -e
-REPO="${1:-ppr-pro-site}"
+REPO="${1:-ppr-site}"
 USER="jokerfrombali"
 cd "$(dirname "$0")"
 git remote remove origin 2>/dev/null || true
