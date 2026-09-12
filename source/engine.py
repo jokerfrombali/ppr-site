@@ -6,9 +6,9 @@ from content.company import C, STEPS, WHY, DELIVERY, REVIEWS, CASES
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, os.environ.get('OUT', 'dist'))
-BASE = os.environ.get('BASE', '').rstrip('/')          # префикс пути, напр. /ppr-pro-site
+BASE = os.environ.get('BASE', '').rstrip('/') or os.environ.get('BASE', '')          # префикс пути, напр. /ppr-pro-site
 if os.environ.get('SITE'):
-    C['site'] = os.environ['SITE'].rstrip('/') + BASE
+    C['site'] = os.environ['SITE'].rstrip('/') + ('' if BASE in ('', 'rel') else BASE)
 if os.environ.get('FORM_ACTION'):
     C['form_action'] = os.environ['FORM_ACTION']
 FORM_METHOD = os.environ.get('FORM_METHOD', 'post')
@@ -232,13 +232,21 @@ def render(page):
 
 _ATTR = re.compile(r'((?:href|src|action)=")/(?!/)')
 
-def rebase(html_text):
-    return _ATTR.sub(r'\1' + BASE + '/', html_text) if BASE else html_text
+def rebase(html_text, url='/'):
+    """BASE='rel' — относительные ссылки (работают и в корне, и в подпапке);
+       BASE='/prefix' — абсолютные с префиксом; пусто — как есть."""
+    if not BASE:
+        return html_text
+    if BASE == 'rel':
+        depth = 0 if url == '/' else url.strip('/').count('/') + 1
+        pref = '../' * depth if depth else './'
+        return _ATTR.sub(lambda m: m.group(1) + pref, html_text)
+    return _ATTR.sub(r'\1' + BASE + '/', html_text)
 
 def write(page):
     url = page['url']
     path = os.path.join(DIST, url.strip('/'), 'index.html') if url != '/' else os.path.join(DIST, 'index.html')
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, 'w', encoding='utf-8') as f:
-        f.write(rebase(render(page)))
+        f.write(rebase(render(page), url))
     return path
