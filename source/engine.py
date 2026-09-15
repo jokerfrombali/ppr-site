@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Движок сборки статического сайта ППР ПРО."""
-import os, re, html, shutil, datetime, sys
+import os, re, html, shutil, datetime, sys, hashlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from content.company import C, STEPS, WHY, DELIVERY, REVIEWS, CASES
 
@@ -14,6 +14,7 @@ if os.environ.get('FORM_ACTION'):
 FORM_METHOD = os.environ.get('FORM_METHOD', 'post')
 TODAY = '2026-09-12'
 e = html.escape
+ASSET_VER = hashlib.md5(open(os.path.join(ROOT, 'assets', 'style.css'), 'rb').read()).hexdigest()[:8]
 
 NAV = [('/ppr/', 'ППР по видам работ'), ('/pprk/', 'ППРк на краны'),
        ('/oati/', 'Ордера ОАТИ'), ('/uslugi/', 'Услуги'),
@@ -212,7 +213,7 @@ def render(page):
 <meta property="og:url" content="{canon}">
 <meta property="og:site_name" content="{e(C['brand'])}">
 <meta property="og:locale" content="ru_RU">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v={ASSET_VER}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 {ld_json(page)}
 </head>
