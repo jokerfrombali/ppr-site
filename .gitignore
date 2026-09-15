@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .DS_Store
 zayavki.log
+zayavki_no.txt
+tg_config.php
+**/tg_config.php
