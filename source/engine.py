@@ -107,7 +107,7 @@ def price_block(page_url, h2='Сроки и стоимость'):
 def contacts_inline():
     return f'''<section class="section"><h2>Контакты</h2>
 <div class="cols c3">
-<div class="card"><h3>Телефон</h3><p><a href="tel:{C['phone_href']}">{e(C['phone'])}</a><br><a href="tel:{C['phone2_href']}">{e(C['phone2'])}</a></p><p>{e(C['hours'])}</p></div>
+<div class="card"><h3>Телефон</h3><p><a href="tel:{C['phone_href']}">{e(C['phone'])}</a></p><p>{e(C['hours'])}</p></div>
 <div class="card"><h3>Почта и мессенджеры</h3><p><a href="mailto:{C['email']}">{e(C['email'])}</a></p><p><a href="{C['whatsapp']}" rel="nofollow noopener" target="_blank">WhatsApp</a> · <a href="{C['telegram']}" rel="nofollow noopener" target="_blank">Telegram</a></p></div>
 <div class="card"><h3>Офис</h3><p>{e(C['address'])}</p><p>Работаем по {e(C['region'])}, {e(C['region_wide'])}.</p></div>
 </div></section>'''
@@ -136,7 +136,7 @@ def header(url):
 <span class="sp">{e(C['hours'])}</span>
 <a href="mailto:{C['email']}">{e(C['email'])}</a></div></div>
 <header class="site"><div class="wrap">
-<a class="logo" href="/"><span aria-hidden="true" style="font-size:28px;line-height:1;color:var(--blue)">▤</span><span style="font-size:20px;font-weight:700;color:var(--ink)">ППР&nbsp;<b>ПРО</b><span>проекты производства работ</span></span></a>
+<a class="logo" href="/"><span aria-hidden="true" style="font-size:28px;line-height:1;color:var(--blue)">▤</span><span style="font-size:20px;font-weight:700;color:var(--ink)">ППР<b>.РФ</b><span>проекты производства работ</span></span></a>
 <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">Меню</button>
 <nav class="main" id="nav">{nav}</nav>
 <div class="hd-phone"><a href="tel:{C['phone_href']}" style="color:inherit">{e(C['phone'])}</a><small>{e(C['hours'])}</small></div>
@@ -152,7 +152,6 @@ def footer_html():
 {col('Полезное', [('/blog/chto-takoe-ppr/','Что такое ППР'),('/blog/pos-i-ppr-otlichiya/','ПОС и ППР: отличия'),('/blog/kto-razrabatyvaet-ppr/','Кто разрабатывает ППР'),('/blog/normativy-ppr/','Нормативы'),('/primery-ppr/','Примеры ППР'),('/skachat/','Скачать бланки')])}
 <div><h3>Контакты</h3><ul>
 <li><a href="tel:{C['phone_href']}">{e(C['phone'])}</a></li>
-<li><a href="tel:{C['phone2_href']}">{e(C['phone2'])}</a></li>
 <li><a href="mailto:{C['email']}">{e(C['email'])}</a></li>
 <li>{e(C['address'])}</li>
 <li><a href="{C['whatsapp']}" rel="nofollow noopener" target="_blank">WhatsApp</a> · <a href="{C['telegram']}" rel="nofollow noopener" target="_blank">Telegram</a></li>

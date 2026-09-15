@@ -664,8 +664,7 @@ def register(reg, G):
                    f'{C["hours"]}'],
                   '/kontakty/', 'Написать нам')]
         b.append('<section class="section"><h2>Как с нами связаться</h2><div class="cols c3">'
-                 f'<div class="card"><h3>Телефоны</h3><p><a href="tel:{C["phone_href"]}">{e(C["phone"])}</a><br>'
-                 f'<a href="tel:{C["phone2_href"]}">{e(C["phone2"])}</a></p><p>{e(C["hours"])}</p></div>'
+                 f'<div class="card"><h3>Телефон</h3><p><a href="tel:{C["phone_href"]}">{e(C["phone"])}</a></p><p>{e(C["hours"])}</p></div>'
                  f'<div class="card"><h3>Почта и мессенджеры</h3><p><a href="mailto:{C["email"]}">{e(C["email"])}</a></p>'
                  f'<p><a href="{C["whatsapp"]}" rel="nofollow noopener" target="_blank">WhatsApp</a> · '
                  f'<a href="{C["telegram"]}" rel="nofollow noopener" target="_blank">Telegram</a></p>'
@@ -826,7 +825,7 @@ def register(reg, G):
 <a class="card card-l" href="/kak-my-rabotaem/"><h3>Как мы работаем</h3><p>Этапы, сроки и какие исходные данные понадобятся.</p><span class="more">Читать →</span></a>
 </div></section>
 <section class="section"><h2>Срочно?</h2>
-<p>Позвоните: <a href="tel:{C['phone_href']}">{e(C['phone'])}</a> или <a href="tel:{C['phone2_href']}">{e(C['phone2'])}</a>.
+<p>Позвоните: <a href="tel:{C['phone_href']}">{e(C['phone'])}</a>.
 Также доступны <a href="{C['whatsapp']}" rel="nofollow noopener" target="_blank">WhatsApp</a> и
 <a href="{C['telegram']}" rel="nofollow noopener" target="_blank">Telegram</a>.</p></section>'''
     reg('/spasibo/', 'Заявка отправлена | ППР ПРО', 'Спасибо за обращение. Свяжемся в течение рабочего дня.',

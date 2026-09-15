@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-$TO      = '5608018@mail.ru';
+$TO      = 'ppr1rf@mail.ru';
 $FROM    = 'noreply@xn--1-2tbae.xn--p1ai';
 $SUBJECT = 'Заявка с сайта ппр1.рф';
 $THANKS  = '/spasibo/';
