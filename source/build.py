@@ -120,7 +120,14 @@ def main():
           'RewriteCond %{HTTPS} off', 'RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]', '',
           '# 301 со старых адресов на новую структуру']
     for old, new in REDIRECTS:
-        ht.append(f'Redirect 301 {old} {new}')
+        if old == '/index.html':
+            # Redirect 301 тут зациклится: DirectoryIndex внутренне резолвит "/" в
+            # index.html, и это же правило перехватывает внутренний ре-запрос.
+            # THE_REQUEST хранит исходную строку запроса клиента и не подменяется.
+            ht.append('RewriteCond %{THE_REQUEST} \\s/index\\.html[\\s?] [NC]')
+            ht.append(f'RewriteRule ^index\\.html$ {new} [R=301,L]')
+        else:
+            ht.append(f'Redirect 301 {old} {new}')
     ht += ['', '# Слеш в конце адреса', 'RewriteCond %{REQUEST_FILENAME} !-f',
            'RewriteCond %{REQUEST_URI} !(/$|\\.)', 'RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]', '',
            '<IfModule mod_deflate.c>', '  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml text/xml',
