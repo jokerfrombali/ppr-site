@@ -22,7 +22,7 @@ NAV = [('/ppr/', 'ППР по видам работ'), ('/pprk/', 'ППРк на
 PAGES = {}   # url -> {'title','h1',...} — заполняется при регистрации, нужно для крошек и перелинковки
 
 # ---------------------------------------------------------------- формы
-def form(fid, title, note, btn='Заказать смету', variant='', page_url='', extra_work=True):
+def form(fid, title, note, btn='Рассчитать стоимость', variant='', page_url='', extra_work=True):
     opts = ''
     if extra_work:
         opts = ('<div class="field"><label for="%s-w">Вид работ или объект</label>'
@@ -39,16 +39,15 @@ def form(fid, title, note, btn='Заказать смету', variant='', page_u
 <button type="submit" class="btn btn-w">{e(btn)}</button>
 <p class="agree">Нажимая кнопку, вы соглашаетесь с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных.</p>
 </form>
-<div class="form-alt"><span>Или сразу:</span>
-<a href="tel:{C['phone_href']}">{e(C['phone'])}</a><span>·</span>
-<a href="{C['whatsapp']}" rel="nofollow noopener" target="_blank">WhatsApp</a><span>·</span>
-<a href="mailto:{C['email']}">{e(C['email'])}</a></div>
+<div class="form-alt"><span>Есть готовые документы?</span>
+<a href="mailto:{C['email']}">Пришлите на {e(C['email'])}</a><span>·</span>
+<a href="{C['whatsapp']}" rel="nofollow noopener" target="_blank">WhatsApp</a></div>
 </div>'''
 
-def cta_band(h2, text, page_url, fid='mid', btn='Заказать смету'):
+def cta_band(h2, text, page_url, fid='mid', btn='Рассчитать стоимость'):
     return f'''<section class="cta-band">
 <div><h2>{e(h2)}</h2><p>{e(text)}</p></div>
-{form(fid, 'Расчёт сметы', 'Ответим в течение рабочего дня. Смета — до подписания договора.', btn, page_url=page_url)}
+{form(fid, 'Расчёт стоимости', 'Ответим в течение рабочего дня. Точная цена — в договоре, до начала работы.', btn, page_url=page_url)}
 </section>'''
 
 # ---------------------------------------------------------------- элементы
@@ -163,7 +162,7 @@ def footer_html():
 <a href="/karta-sajta/">Карта сайта</a>
 <span>Информация на сайте не является публичной офертой.</span></div>
 </div></footer>
-<div class="mbar"><a class="c" href="#zayavka">Заказать смету</a><a class="p" href="tel:{C['phone_href']}">Позвонить</a></div>
+<div class="mbar"><a class="c" href="#zayavka">Рассчитать стоимость</a><a class="p" href="tel:{C['phone_href']}">Позвонить</a></div>
 <script>
 document.getElementById('burger').addEventListener('click',function(){{var n=document.getElementById('nav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))}});
 </script>'''
@@ -172,7 +171,7 @@ def ld_json(page):
     import json as _j
     g = [{"@context":"https://schema.org","@type":"Organization","name":C['brand'],"url":C['site'],
           "telephone":C['phone'],"email":C['email'],
-          "address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Дмитровское шоссе, д. 100","addressCountry":"RU"},
+          "address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"ул. Бутлерова, д. 17","addressCountry":"RU"},
           "areaServed":"Москва и Московская область"}]
     if page['url'] != '/':
         items, acc = [{"@type":"ListItem","position":1,"name":"Главная","item":C['site']+"/"}], ''
@@ -189,12 +188,12 @@ def ld_json(page):
 def render(page):
     url = page['url']
     body = page['body']
-    fin = '' if page.get('no_final_form') else f'''<section class="section" id="zayavka"><h2>{e(page.get("final_h2","Заказать смету на разработку"))}</h2>
+    fin = '' if page.get('no_final_form') else f'''<section class="section" id="zayavka"><h2>{e(page.get("final_h2","Рассчитать стоимость разработки"))}</h2>
 <div class="cols c2"><div>
-<p>{e(page.get("final_text", "Пришлите задание — посчитаем объём разделов, назовём срок и цену. Смета бесплатная, ни к чему не обязывает."))}</p>
+<p>{e(page.get("final_text", "Пришлите задание — посчитаем объём разделов, назовём срок и цену. Расчёт бесплатный, ни к чему не обязывает."))}</p>
 <p>Если не хватает исходных данных — подскажем, что именно нужно и где это взять. Работаем по {e(C['region'])}, {e(C['region_wide'])}.</p>
 <p><strong>Телефон:</strong> <a href="tel:{C['phone_href']}">{e(C['phone'])}</a><br><strong>Почта:</strong> <a href="mailto:{C['email']}">{e(C['email'])}</a></p>
-</div>{form('fin', 'Расчёт сметы', 'Ответим в течение рабочего дня.', 'Заказать смету', page_url=url)}</div></section>'''
+</div>{form('fin', 'Расчёт стоимости', 'Ответим в течение рабочего дня.', 'Рассчитать стоимость', page_url=url)}</div></section>'''
     canon = C['site'] + url
     metrika = ''
     if C['metrika']:

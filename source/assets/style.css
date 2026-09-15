@@ -145,10 +145,14 @@ td.n{white-space:nowrap;font-variant-numeric:tabular-nums}
 .linklist li{margin:0;border-bottom:1px solid var(--line-2)}
 .linklist a{display:block;padding:10px 0;font-size:16px}
 
-main{padding-bottom:10px}
+main{padding-top:30px;padding-bottom:10px}
 article{max-width:none}
 article>p,article>ul,article>ol{max-width:72ch}
 .section{padding:6px 0}
+.intro{background:var(--bg-2);border-radius:var(--radius);padding:28px 32px;margin:0 0 8px}
+.intro p{max-width:72ch}
+.intro p:last-child{margin-bottom:0}
+@media(max-width:640px){.intro{padding:20px 22px}}
 
 /* ---------- подвал ---------- */
 footer.site{background:var(--ink);color:#a9b6c2;margin-top:56px;padding:44px 0 26px;font-size:15px}

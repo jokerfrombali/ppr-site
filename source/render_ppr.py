@@ -5,14 +5,14 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine import (C, e, form, cta_band, ul, table, faq, cards, linklist,
                     steps_block, why_block, delivery_block, price_block, PAGES)
 
-def hero(h1, lead, usp, url, btn='Заказать смету'):
+def hero(h1, lead, usp, url, btn='Рассчитать стоимость'):
     return f'''</article></div></main>
 <section class="hero"><div class="wrap">
 <div><h1>{e(h1)}</h1><p class="lead">{e(lead)}</p>
 <ul class="usp">{''.join(f'<li>{e(x)}</li>' for x in usp)}</ul>
 <div class="hero-act"><a class="btn" href="#zayavka">{e(btn)}</a><a class="btn btn-o" href="tel:{C['phone_href']}">{e(C['phone'])}</a></div>
 </div>
-{form('hero', 'Расчёт сметы за 1 рабочий день', 'Пришлите вид работ и объект — посчитаем объём, срок и цену.', btn, page_url=url)}
+{form('hero', 'Расчёт стоимости за 1 рабочий день', 'Пришлите вид работ и объект — посчитаем объём, срок и цену.', btn, page_url=url)}
 </div></section>
 <main><div class="wrap"><article>'''
 
@@ -56,7 +56,7 @@ def render_category(cat, subs, url_base):
         b.append(f'<h3>{e(h3)}</h3>' + ul(items))
     b.append('</section>')
     b.append(cta_band(d.get('cta_h2', 'Нужен расчёт стоимости?'),
-                      d.get('cta_text', 'Пришлите исходные данные — посчитаем объём разделов, срок и цену в течение рабочего дня. Смета бесплатная.'), u))
+                      d.get('cta_text', 'Пришлите исходные данные — посчитаем объём разделов, срок и цену в течение рабочего дня. Расчёт бесплатный.'), u))
     b.append(norms_table(d.get('norms')))
     b.append(risk_table(d.get('risk'), d.get('risk_what', cat['h1'])))
     if d.get('msk'):
@@ -124,7 +124,7 @@ def render_article(a, url):
         if i == mid:
             c = a.get('cta') or ('Нужен проект производства работ?',
                                  'Разработаем ППР под ваш объект: срок от 3 дней, фиксированная цена в договоре, правки по замечаниям бесплатно.')
-            b.append(cta_band(c[0], c[1], url, btn='Заказать смету'))
+            b.append(cta_band(c[0], c[1], url, btn='Рассчитать стоимость'))
     b.append(faq(a['faq']))
     b.append(steps_block('Если нужен проект — как мы работаем'))
     b.append(why_block())
