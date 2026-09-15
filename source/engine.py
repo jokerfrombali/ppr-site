@@ -136,7 +136,7 @@ def header(url):
 <span class="sp">{e(C['hours'])}</span>
 <a href="mailto:{C['email']}">{e(C['email'])}</a></div></div>
 <header class="site"><div class="wrap">
-<a class="logo" href="/"><span aria-hidden="true" style="font-size:28px;line-height:1;color:var(--blue)">▤</span><span style="font-size:20px;font-weight:700;color:var(--ink)">ППР<span style="color:var(--cta)">1</span><b>.РФ</b><span>проекты производства работ</span></span></a>
+<a class="logo" href="/"><span aria-hidden="true" style="font-size:28px;line-height:1;color:var(--blue)">▤</span><span style="font-size:20px;font-weight:700;color:var(--ink)">ППР<b style="color:var(--cta)">1</b><b>.РФ</b><span>проекты производства работ</span></span></a>
 <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">Меню</button>
 <nav class="main" id="nav">{nav}</nav>
 <div class="hd-phone"><a href="tel:{C['phone_href']}" style="color:inherit">{e(C['phone'])}</a><small>{e(C['hours'])}</small></div>
