@@ -8,7 +8,7 @@ from engine import (C, e, form, cta_band, ul, table, faq, cards, linklist,
 def hero(h1, lead, usp, url, btn='Рассчитать стоимость'):
     return f'''</article></div></main>
 <section class="hero"><div class="wrap">
-<div><h1>{e(h1)}</h1><p class="lead">{e(lead)}</p>
+<div><p><span class="tag">Срок от {e(C['term_from'])}</span><span class="tag">{e(C['region'])}</span></p><h1>{e(h1)}</h1><p class="lead">{e(lead)}</p>
 <ul class="usp">{''.join(f'<li>{e(x)}</li>' for x in usp)}</ul>
 <div class="hero-act"><a class="btn" href="#zayavka">{e(btn)}</a><a class="btn btn-o" href="tel:{C['phone_href']}">{e(C['phone'])}</a></div>
 </div>

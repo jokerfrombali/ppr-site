@@ -136,7 +136,7 @@ def header(url):
 <span class="sp">{e(C['hours'])}</span>
 <a href="mailto:{C['email']}">{e(C['email'])}</a></div></div>
 <header class="site"><div class="wrap">
-<a class="logo" href="/"><span aria-hidden="true" style="font-size:28px;line-height:1;color:var(--blue)">▤</span><span style="font-size:20px;font-weight:700;color:var(--ink)">ППР<b style="color:var(--cta)">1</b><b>.РФ</b><span>проекты производства работ</span></span></a>
+<a class="logo" href="/"><svg viewBox="0 0 100 100" width="34" height="34" aria-hidden="true" style="display:block;flex:0 0 auto"><g stroke="#1636e8" stroke-width="13" fill="#1636e8"><line x1="44" y1="44" x2="20" y2="20"/><polygon points="8,8 36,12 12,36" stroke="none"/><line x1="56" y1="44" x2="80" y2="20"/><polygon points="92,8 88,36 64,12" stroke="none"/><line x1="44" y1="56" x2="20" y2="80"/><polygon points="8,92 12,64 36,88" stroke="none"/><line x1="56" y1="56" x2="80" y2="80"/><polygon points="92,92 64,88 88,64" stroke="none"/></g></svg><span style="font-size:21px;font-weight:700;color:var(--ink)">ППР<b style="color:var(--red)">1</b><b>.РФ</b><span>проекты производства работ</span></span></a>
 <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">Меню</button>
 <nav class="main" id="nav">{nav}</nav>
 <div class="hd-phone"><a href="tel:{C['phone_href']}" style="color:inherit">{e(C['phone'])}</a><small>{e(C['hours'])}</small></div>
@@ -213,6 +213,9 @@ def render(page):
 <meta property="og:url" content="{canon}">
 <meta property="og:site_name" content="{e(C['brand'])}">
 <meta property="og:locale" content="ru_RU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="/assets/style.css?v={ASSET_VER}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 {ld_json(page)}

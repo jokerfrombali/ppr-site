@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /send.php
-Disallow: /spasibo/
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&ysclid&from
-
-Sitemap: https://xn--1-2tbae.xn--p1ai/sitemap.xml
