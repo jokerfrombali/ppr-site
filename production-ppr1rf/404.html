@@ -3,21 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Страница не найдена | ППР ПРО</title>
-<meta name="description" content="Страница не найдена. Основные разделы сайта ППР ПРО.">
+<title>Страница не найдена | ППР1.РФ</title>
+<meta name="description" content="Страница не найдена. Основные разделы сайта ППР1.РФ.">
 <link rel="canonical" href="https://xn--1-2tbae.xn--p1ai/404/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Страница не найдена | ППР ПРО">
-<meta property="og:description" content="Страница не найдена. Основные разделы сайта ППР ПРО.">
+<meta property="og:title" content="Страница не найдена | ППР1.РФ">
+<meta property="og:description" content="Страница не найдена. Основные разделы сайта ППР1.РФ.">
 <meta property="og:url" content="https://xn--1-2tbae.xn--p1ai/404/">
-<meta property="og:site_name" content="ППР ПРО">
+<meta property="og:site_name" content="ППР1.РФ">
 <meta property="og:locale" content="ru_RU">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/assets/style.css?v=80d90c19">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ППР ПРО", "url": "https://xn--1-2tbae.xn--p1ai", "telephone": "+7 (926) 256-75-34", "email": "ppr1rf@mail.ru", "address": {"@type": "PostalAddress", "addressLocality": "Москва", "streetAddress": "ул. Бутлерова, д. 17", "addressCountry": "RU"}, "areaServed": "Москва и Московская область"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://xn--1-2tbae.xn--p1ai/"}, {"@type": "ListItem", "position": 2, "name": "404", "item": "https://xn--1-2tbae.xn--p1ai/404/"}]}</script>
+<link rel="stylesheet" href="/assets/style.css?v=5206fb5e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ППР1.РФ", "url": "https://xn--1-2tbae.xn--p1ai", "telephone": "+7 (926) 256-75-34", "email": "ppr1rf@mail.ru", "address": {"@type": "PostalAddress", "addressLocality": "Москва", "streetAddress": "ул. Бутлерова, д. 17", "addressCountry": "RU"}, "areaServed": "Москва и Московская область"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://xn--1-2tbae.xn--p1ai/"}, {"@type": "ListItem", "position": 2, "name": "404", "item": "https://xn--1-2tbae.xn--p1ai/404/"}]}</script>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
@@ -56,18 +57,23 @@
 </div><div class="form-card">
 <h3>Расчёт стоимости</h3>
 <p class="fnote">Ответим в течение рабочего дня.</p>
-<form action="/send.php" method="post" novalidate>
+<form action="/send.php" method="post" enctype="multipart/form-data" novalidate>
 <input type="hidden" name="page" value="/404/">
 <input type="hidden" name="form" value="fin">
 <div class="field"><label for="fin-n">Ваше имя</label><input type="text" id="fin-n" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></div>
 <div class="field"><label for="fin-p">Телефон</label><input type="tel" id="fin-p" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
 <div class="field"><label for="fin-w">Вид работ или объект</label><input type="text" id="fin-w" name="work" placeholder="например: монтаж металлоконструкций, ТЦ в Химках"></div><div class="field"><label for="fin-c">Комментарий <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label><textarea id="fin-c" name="comment" placeholder="Сроки, особенности объекта, что уже есть из документов"></textarea></div>
+<div class="field file"><label for="fin-f">Файлы: ТЗ, чертежи, фото <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label>
+<input type="file" id="fin-f" name="files[]" multiple accept=".pdf,.dwg,.dxf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip,.rar,.7z">
+<small>До 5 файлов, до 20 МБ каждый. PDF, DWG, DOC, XLS, JPG, ZIP.</small></div>
+<input type="hidden" name="calc" value="">
 <button type="submit" class="btn btn-w">Рассчитать стоимость</button>
 <p class="agree">Нажимая кнопку, вы соглашаетесь с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных.</p>
 </form>
-<div class="form-alt"><span>Есть готовые документы?</span>
-<a href="mailto:ppr1rf@mail.ru">Пришлите на ppr1rf@mail.ru</a><span>·</span>
-<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a></div>
+<div class="form-alt"><span>Удобнее в мессенджере?</span>
+<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a><span>·</span>
+<a href="https://t.me/+79262567534" rel="nofollow noopener" target="_blank">Telegram</a><span>·</span>
+<a href="mailto:ppr1rf@mail.ru">ppr1rf@mail.ru</a></div>
 </div></div></section>
 </article></div></main>
 <footer class="site"><div class="wrap"><div class="f-grid">
@@ -82,7 +88,7 @@
 <li><a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a> · <a href="https://t.me/+79262567534" rel="nofollow noopener" target="_blank">Telegram</a></li>
 </ul></div>
 </div>
-<div class="f-bottom"><span>© ППР ПРО, 2026</span>
+<div class="f-bottom"><span>© ППР1.РФ, 2026</span>
 <a href="/politika-konfidencialnosti/">Политика конфиденциальности</a>
 <a href="/soglasie-na-obrabotku/">Согласие на обработку данных</a>
 <a href="/karta-sajta/">Карта сайта</a>
@@ -92,6 +98,7 @@
 <script>
 document.getElementById('burger').addEventListener('click',function(){var n=document.getElementById('nav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))});
 </script>
+
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(112671893,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
 </body>
 </html>

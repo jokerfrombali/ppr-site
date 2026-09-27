@@ -1,6 +1,6 @@
 <?php
 /**
- * Обработчик форм заявок сайта ППР ПРО.
+ * Обработчик форм заявок сайта ППР1.РФ.
  */
 declare(strict_types=1);
 
@@ -66,11 +66,42 @@ function tg_send(string $token, string $chatId, string $threadId, string $text):
     }
 }
 
+function tg_doc(string $token, string $chatId, string $threadId, string $path, string $name, string $caption): void {
+    if ($token === '' || $chatId === '' || !function_exists('curl_init')) { return; }
+    $params = ['chat_id' => $chatId, 'caption' => $caption, 'document' => new CURLFile($path, 'application/octet-stream', $name)];
+    if ($threadId !== '') { $params['message_thread_id'] = $threadId; }
+    $ch = curl_init("https://api.telegram.org/bot{$token}/sendDocument");
+    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $params,
+        CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 30]);
+    @curl_exec($ch);
+    curl_close($ch);
+}
+
+// Вложения: до 5 файлов, до 20 МБ каждый и 25 МБ суммарно, только разрешённые расширения.
+// На сервере не сохраняются — пересылаются из временной папки PHP.
+$ALLOWED = ['pdf','dwg','dxf','doc','docx','xls','xlsx','jpg','jpeg','png','zip','rar','7z'];
+$files = [];
+if (!empty($_FILES['files']['name']) && is_array($_FILES['files']['name'])) {
+    $total = 0;
+    foreach ($_FILES['files']['name'] as $i => $orig) {
+        if (count($files) >= 5) { break; }
+        if (($_FILES['files']['error'][$i] ?? 1) !== UPLOAD_ERR_OK) { continue; }
+        $tmp  = $_FILES['files']['tmp_name'][$i];
+        $size = (int)$_FILES['files']['size'][$i];
+        $ext  = strtolower(pathinfo((string)$orig, PATHINFO_EXTENSION));
+        if (!is_uploaded_file($tmp) || !in_array($ext, $ALLOWED, true) || $size > 20 * 1048576) { continue; }
+        if ($total + $size > 25 * 1048576) { break; }
+        $total += $size;
+        $safe = preg_replace('/[^\p{L}\p{N}._ -]+/u', '_', basename((string)$orig));
+        $files[] = ['tmp' => $tmp, 'name' => mb_substr((string)$safe, 0, 120)];
+    }
+}
+
 $fields = [
     'name' => 'Имя', 'phone' => 'Телефон', 'email' => 'E-mail',
     'work' => 'Вид работ / объект', 'doc_type' => 'Что нужно разработать',
     'work_type' => 'Вид работ', 'object' => 'Объект', 'deadline' => 'Срок',
-    'comment' => 'Комментарий', 'page' => 'Страница', 'form' => 'Форма',
+    'calc' => 'Калькулятор', 'comment' => 'Комментарий', 'page' => 'Страница', 'form' => 'Форма',
 ];
 
 $name  = clean((string)($_POST['name'] ?? ''), 120);
@@ -89,6 +120,7 @@ foreach ($fields as $key => $label) {
 $lines[] = 'Дата: ' . $stamp . ' (Мск)';
 $lines[] = 'IP: ' . ($_SERVER['REMOTE_ADDR'] ?? '');
 $lines[] = 'Источник: ' . clean((string)($_SERVER['HTTP_REFERER'] ?? ''));
+if ($files) { $lines[] = 'Файлы: ' . implode(', ', array_column($files, 'name')); }
 $body = implode("\n", $lines);
 
 @file_put_contents($LOG, $body . "\n" . str_repeat('-', 40) . "\n", FILE_APPEND | LOCK_EX);
@@ -97,17 +129,32 @@ $replyTo = filter_var((string)($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL) ?:
 $headers = [
     'From: ' . $SUBJECT . ' <' . $FROM . '>',
     'Reply-To: ' . $replyTo,
-    'Content-Type: text/plain; charset=UTF-8',
     'MIME-Version: 1.0',
 ];
-@mail($TO, '=?UTF-8?B?' . base64_encode($SUBJECT . " #{$no}") . '?=', $body, implode("\r\n", $headers));
+if ($files) {
+    $bnd = 'b' . bin2hex(random_bytes(12));
+    $headers[] = 'Content-Type: multipart/mixed; boundary="' . $bnd . '"';
+    $msg = "--{$bnd}\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
+         . chunk_split(base64_encode($body));
+    foreach ($files as $f) {
+        $fn = '=?UTF-8?B?' . base64_encode($f['name']) . '?=';
+        $msg .= "--{$bnd}\r\nContent-Type: application/octet-stream; name=\"{$fn}\"\r\n"
+              . "Content-Transfer-Encoding: base64\r\nContent-Disposition: attachment; filename=\"{$fn}\"\r\n\r\n"
+              . chunk_split(base64_encode((string)file_get_contents($f['tmp'])));
+    }
+    $msg .= "--{$bnd}--";
+} else {
+    $headers[] = 'Content-Type: text/plain; charset=UTF-8';
+    $msg = $body;
+}
+@mail($TO, '=?UTF-8?B?' . base64_encode($SUBJECT . " #{$no}") . '?=', $msg, implode("\r\n", $headers));
 
 $page = clean((string)($_POST['page'] ?? '')) ?: clean((string)($_SERVER['HTTP_REFERER'] ?? ''));
 $tg = ["\xF0\x9F\x86\x95 <b>Заявка #{$no}</b>", "\xF0\x9F\x95\x92 {$stamp} (Мск)", ''];
 $tg[] = '<b>Имя:</b> ' . htmlspecialchars($name, ENT_QUOTES);
 $tg[] = '<b>Телефон:</b> ' . htmlspecialchars($phone, ENT_QUOTES);
 foreach (['email' => 'E-mail', 'work' => 'Вид работ / объект', 'doc_type' => 'Что нужно разработать',
-          'work_type' => 'Вид работ', 'object' => 'Объект', 'deadline' => 'Срок'] as $key => $label) {
+          'work_type' => 'Вид работ', 'object' => 'Объект', 'deadline' => 'Срок', 'calc' => 'Калькулятор'] as $key => $label) {
     $val = clean((string)($_POST[$key] ?? ''));
     if ($val !== '') { $tg[] = "<b>{$label}:</b> " . htmlspecialchars($val, ENT_QUOTES); }
 }
@@ -115,7 +162,9 @@ $comment = clean((string)($_POST['comment'] ?? ''));
 if ($comment !== '') { $tg[] = ''; $tg[] = htmlspecialchars($comment, ENT_QUOTES); }
 $tg[] = '';
 $tg[] = '<b>Страница:</b> ' . htmlspecialchars($page !== '' ? $page : '—', ENT_QUOTES);
+if ($files) { $tg[] = '<b>Файлы:</b> ' . count($files) . ' шт. — ниже'; }
 tg_send($TG_TOKEN, $TG_CHAT_ID, $TG_THREAD_ID, implode("\n", $tg));
+foreach ($files as $f) { tg_doc($TG_TOKEN, $TG_CHAT_ID, $TG_THREAD_ID, $f['tmp'], $f['name'], "К заявке #{$no}"); }
 
 header('Location: ' . $THANKS, true, 303);
 exit;

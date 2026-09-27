@@ -195,4 +195,25 @@ footer.site h3{color:#fff;font-family:var(--font-mono);font-size:13px;text-trans
   .topbar .sp{display:none}
   h2{margin:32px 0 12px}
 }
+/* файлы в форме */
+.field.file input[type=file]{padding:10px;background:var(--bg-input);font-size:13px;cursor:pointer}
+.field.file input[type=file]::file-selector-button{font-family:var(--font-mono);text-transform:uppercase;font-size:11px;letter-spacing:.06em;border:1px solid var(--ink);background:transparent;padding:7px 12px;margin-right:10px;cursor:pointer}
+.field.file small{display:block;margin-top:5px;font-size:12px;color:var(--ink-3)}
+/* калькулятор */
+.calc-g{display:grid;grid-template-columns:1.3fr 1fr;border:1px solid var(--line);border-top:3px solid var(--blue)}
+.calc-f{padding:24px 26px;background:var(--bg)}
+.calc .chk{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink-2);margin:10px 0;cursor:pointer}
+.calc .chk input{width:18px;height:18px;margin-top:2px;accent-color:var(--red);flex:0 0 auto}
+.calc-r{background:var(--ink);color:#fff;padding:26px;display:flex;flex-direction:column;gap:4px}
+.calc-k{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#a9a695;margin-top:8px}
+.calc-p{font-size:30px;line-height:1.15;color:var(--yellow)}
+.calc-t{font-size:20px}
+.calc-r p{color:#c9c7bd;font-size:14px;margin:14px 0 18px}
+.calc-r .btn{margin-top:auto}
+/* фото */
+figure.ph{margin:26px 0}
+figure.ph img{display:block;width:100%;height:auto;max-height:460px;object-fit:cover;background:var(--bg-3)}
+figure.ph figcaption{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);margin-top:6px}
+figure.ph figcaption a{color:var(--ink-3)}
+@media(max-width:800px){.calc-g{grid-template-columns:1fr}.calc-f,.calc-r{padding:20px}.calc-p{font-size:25px}figure.ph img{max-height:260px}}
 @media print{.mbar,.burger,nav.main,.cta-band,.form-card{display:none}}

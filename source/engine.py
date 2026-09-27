@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Движок сборки статического сайта ППР ПРО."""
+"""Движок сборки статического сайта ППР1.РФ."""
 import os, re, html, shutil, datetime, sys, hashlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from content.company import C, STEPS, WHY, DELIVERY, REVIEWS, CASES
+from calc import calc_block, CALC_JS
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, os.environ.get('OUT', 'dist'))
@@ -12,7 +13,7 @@ if os.environ.get('SITE'):
 if os.environ.get('FORM_ACTION'):
     C['form_action'] = os.environ['FORM_ACTION']
 FORM_METHOD = os.environ.get('FORM_METHOD', 'post')
-TODAY = '2026-09-12'
+TODAY = '2026-09-27'
 e = html.escape
 ASSET_VER = hashlib.md5(open(os.path.join(ROOT, 'assets', 'style.css'), 'rb').read()).hexdigest()[:8]
 
@@ -31,18 +32,23 @@ def form(fid, title, note, btn='Рассчитать стоимость', varian
     return f'''<div class="form-card{variant}">
 <h3>{e(title)}</h3>
 <p class="fnote">{e(note)}</p>
-<form action="{C['form_action']}" method="{FORM_METHOD}" novalidate>
+<form action="{C['form_action']}" method="{FORM_METHOD}" enctype="multipart/form-data" novalidate>
 <input type="hidden" name="page" value="{e(page_url)}">
 <input type="hidden" name="form" value="{e(fid)}">
 <div class="field"><label for="{fid}-n">Ваше имя</label><input type="text" id="{fid}-n" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></div>
 <div class="field"><label for="{fid}-p">Телефон</label><input type="tel" id="{fid}-p" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
 {opts}<div class="field"><label for="{fid}-c">Комментарий <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label><textarea id="{fid}-c" name="comment" placeholder="Сроки, особенности объекта, что уже есть из документов"></textarea></div>
+<div class="field file"><label for="{fid}-f">Файлы: ТЗ, чертежи, фото <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label>
+<input type="file" id="{fid}-f" name="files[]" multiple accept=".pdf,.dwg,.dxf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip,.rar,.7z">
+<small>До 5 файлов, до 20 МБ каждый. PDF, DWG, DOC, XLS, JPG, ZIP.</small></div>
+<input type="hidden" name="calc" value="">
 <button type="submit" class="btn btn-w">{e(btn)}</button>
 <p class="agree">Нажимая кнопку, вы соглашаетесь с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных.</p>
 </form>
-<div class="form-alt"><span>Есть готовые документы?</span>
-<a href="mailto:{C['email']}">Пришлите на {e(C['email'])}</a><span>·</span>
-<a href="{C['whatsapp']}" rel="nofollow noopener" target="_blank">WhatsApp</a></div>
+<div class="form-alt"><span>Удобнее в мессенджере?</span>
+<a href="{C['whatsapp']}" rel="nofollow noopener" target="_blank">WhatsApp</a><span>·</span>
+<a href="{C['telegram']}" rel="nofollow noopener" target="_blank">Telegram</a><span>·</span>
+<a href="mailto:{C['email']}">{e(C['email'])}</a></div>
 </div>'''
 
 def cta_band(h2, text, page_url, fid='mid', btn='Рассчитать стоимость'):
@@ -206,7 +212,7 @@ def render(page):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(page['title'])}</title>
 <meta name="description" content="{e(page['desc'])}">
-<link rel="canonical" href="{canon}">
+{'<meta name="robots" content="noindex,follow">' if page.get("noindex") else ''}<link rel="canonical" href="{canon}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{e(page['title'])}">
 <meta property="og:description" content="{e(page['desc'])}">
@@ -217,7 +223,8 @@ def render(page):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="/assets/style.css?v={ASSET_VER}">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
 {ld_json(page)}
 </head>
 <body>
@@ -228,6 +235,7 @@ def render(page):
 {fin}
 </article></div></main>
 {footer_html()}
+{CALC_JS if 'data-calc' in body else ''}
 {metrika}
 </body>
 </html>'''

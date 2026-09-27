@@ -4,6 +4,10 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine import (C, e, form, cta_band, ul, table, faq, cards, linklist,
                     steps_block, why_block, delivery_block, price_block, PAGES)
+from calc import calc_block, photo
+
+def _doc(u):
+    return 1 if u.startswith('/pprk/') else 2 if u.startswith('/oati/') else 5 if 'demontazh' in u else 0
 
 def hero(h1, lead, usp, url, btn='Рассчитать стоимость'):
     return f'''</article></div></main>
@@ -16,7 +20,7 @@ def hero(h1, lead, usp, url, btn='Рассчитать стоимость'):
 </div></section>
 <main><div class="wrap"><article>'''
 
-DEF_USP = ['Фиксированная цена в договоре — смета до начала работы',
+DEF_USP = ['Фиксированная цена в договоре — расчёт до начала работы',
            'Правки по замечаниям согласующих — бесплатно',
            f'Срок от {C["term_from"]}, стоимость от {C["price_from"]}',
            'Проект ведёт профильный инженер по вашему виду работ']
@@ -39,6 +43,7 @@ def render_category(cat, subs, url_base):
     u = url_base
     b = [hero(cat['h1'], d['lead'], d.get('usp') or DEF_USP, u)]
     for p in d['intro']: b.append(f'<p>{p}</p>')
+    b.append(photo(u, cat['h1']))
     b.append(f'<section class="section"><h2>Когда нужен {e(d["when_title"])}</h2>'
              f'<p>{d.get("when_lead","Разработка проекта производства работ обязательна в следующих случаях:")}</p>' + ul(d['when']) +
              '<div class="note"><p>Сомневаетесь, нужен ли вам полный ППР или достаточно технологической карты? '
@@ -66,10 +71,8 @@ def render_category(cat, subs, url_base):
     if d.get('mist'):
         b.append('<section class="section"><h2>Типовые ошибки, из-за которых проект возвращают</h2>'
                  '<p>Собрали то, что чаще всего приходится исправлять в чужих комплектах:</p>' + ul(d['mist']) + '</section>')
-    b.append(price_block(u))
+    b.append(calc_block(_doc(u)))
     b.append(steps_block())
-    b.append(delivery_block())
-    b.append(why_block())
     b.append(faq(d['faq']))
     if d.get('rel'):
         b.append('<section class="section"><h2>Смежные услуги</h2>' + linklist(d['rel']) + '</section>')
@@ -79,18 +82,16 @@ def render_sub(sub, cat, url, parent_url):
     d = sub['d']
     b = [hero(sub['h1'], d['lead'], d.get('usp') or DEF_USP, url)]
     for p in d['intro']: b.append(f'<p>{p}</p>')
+    if not url.startswith('/ppr-dlya/'): b.append(photo(url, sub['h1']))
     b.append(f'<section class="section"><h2>{e(d["when_title"])}</h2>'
              f'<p>{d.get("when_lead","Проект нужен, если выполняется хотя бы одно из условий:")}</p>' + ul(d['when']) + '</section>')
     b.append(f'<section class="section"><h2>{e(d["comp_title"])}</h2>'
              f'<p>{d.get("comp_lead","В комплект входят разделы, которые закрывают именно этот процесс:")}</p>' + ul(d['comp']) + '</section>')
-    b.append(cta_band(d.get('cta_h2', 'Посчитать стоимость проекта'),
-                      d.get('cta_text', 'Опишите объект и объём работ — назовём срок и цену в течение рабочего дня.'), url))
     b.append(norms_table(d.get('norms')))
     b.append(risk_table(d.get('risk'), d.get('risk_what', sub['h1'])))
     if d.get('msk'):
         b.append('<section class="section"><h2>Особенности в Москве</h2>' + ul(d['msk']) + '</section>')
-    b.append(price_block(url))
-    b.append(steps_block())
+    b.append(calc_block(_doc(url)))
     b.append(faq(d['faq']))
     rel = d.get('rel') or []
     rel = [(parent_url, cat['h1'])] + list(rel)

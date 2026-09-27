@@ -3,21 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Примеры и образцы ППР — состав проекта | ППР ПРО</title>
+<title>Примеры и образцы ППР — состав проекта | ППР1.РФ</title>
 <meta name="description" content="Как выглядит готовый проект производства работ: состав комплекта, структура разделов, отличия по видам работ. Пример по вашему направлению — по запросу.">
 <link rel="canonical" href="https://xn--1-2tbae.xn--p1ai/primery-ppr/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Примеры и образцы ППР — состав проекта | ППР ПРО">
+<meta property="og:title" content="Примеры и образцы ППР — состав проекта | ППР1.РФ">
 <meta property="og:description" content="Как выглядит готовый проект производства работ: состав комплекта, структура разделов, отличия по видам работ. Пример по вашему направлению — по запросу.">
 <meta property="og:url" content="https://xn--1-2tbae.xn--p1ai/primery-ppr/">
-<meta property="og:site_name" content="ППР ПРО">
+<meta property="og:site_name" content="ППР1.РФ">
 <meta property="og:locale" content="ru_RU">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/assets/style.css?v=80d90c19">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ППР ПРО", "url": "https://xn--1-2tbae.xn--p1ai", "telephone": "+7 (926) 256-75-34", "email": "ppr1rf@mail.ru", "address": {"@type": "PostalAddress", "addressLocality": "Москва", "streetAddress": "ул. Бутлерова, д. 17", "addressCountry": "RU"}, "areaServed": "Москва и Московская область"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://xn--1-2tbae.xn--p1ai/"}, {"@type": "ListItem", "position": 2, "name": "Примеры", "item": "https://xn--1-2tbae.xn--p1ai/primery-ppr/"}]}</script>
+<link rel="stylesheet" href="/assets/style.css?v=5206fb5e">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ППР1.РФ", "url": "https://xn--1-2tbae.xn--p1ai", "telephone": "+7 (926) 256-75-34", "email": "ppr1rf@mail.ru", "address": {"@type": "PostalAddress", "addressLocality": "Москва", "streetAddress": "ул. Бутлерова, д. 17", "addressCountry": "RU"}, "areaServed": "Москва и Московская область"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://xn--1-2tbae.xn--p1ai/"}, {"@type": "ListItem", "position": 2, "name": "Примеры", "item": "https://xn--1-2tbae.xn--p1ai/primery-ppr/"}]}</script>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
@@ -41,18 +42,23 @@
 <div class="form-card">
 <h3>Расчёт стоимости за 1 рабочий день</h3>
 <p class="fnote">Пришлите вид работ и объект — посчитаем объём, срок и цену.</p>
-<form action="/send.php" method="post" novalidate>
+<form action="/send.php" method="post" enctype="multipart/form-data" novalidate>
 <input type="hidden" name="page" value="/primery-ppr/">
 <input type="hidden" name="form" value="hero">
 <div class="field"><label for="hero-n">Ваше имя</label><input type="text" id="hero-n" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></div>
 <div class="field"><label for="hero-p">Телефон</label><input type="tel" id="hero-p" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
 <div class="field"><label for="hero-w">Вид работ или объект</label><input type="text" id="hero-w" name="work" placeholder="например: монтаж металлоконструкций, ТЦ в Химках"></div><div class="field"><label for="hero-c">Комментарий <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label><textarea id="hero-c" name="comment" placeholder="Сроки, особенности объекта, что уже есть из документов"></textarea></div>
+<div class="field file"><label for="hero-f">Файлы: ТЗ, чертежи, фото <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label>
+<input type="file" id="hero-f" name="files[]" multiple accept=".pdf,.dwg,.dxf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip,.rar,.7z">
+<small>До 5 файлов, до 20 МБ каждый. PDF, DWG, DOC, XLS, JPG, ZIP.</small></div>
+<input type="hidden" name="calc" value="">
 <button type="submit" class="btn btn-w">Заказать такой же ППР</button>
 <p class="agree">Нажимая кнопку, вы соглашаетесь с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных.</p>
 </form>
-<div class="form-alt"><span>Есть готовые документы?</span>
-<a href="mailto:ppr1rf@mail.ru">Пришлите на ppr1rf@mail.ru</a><span>·</span>
-<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a></div>
+<div class="form-alt"><span>Удобнее в мессенджере?</span>
+<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a><span>·</span>
+<a href="https://t.me/+79262567534" rel="nofollow noopener" target="_blank">Telegram</a><span>·</span>
+<a href="mailto:ppr1rf@mail.ru">ppr1rf@mail.ru</a></div>
 </div>
 </div></section>
 <main><div class="wrap"><article><p>Образец ППР полезен, чтобы понять структуру документа и оценить, что вы получите. Но применять чужой проект на своём объекте нельзя: опасные зоны считаются от конкретной техники, крепление выемки — от фактического грунта, точки крепления страховки — от реальных конструкций.</p><p>Ниже — из чего состоит типовой комплект и чем отличается наполнение по видам работ. Если нужен конкретный пример по вашему направлению — напишите, покажем.</p><section class="section"><h2>Из чего состоит комплект</h2><p>Базовая структура одинакова для всех видов работ, различается наполнение:</p><ul><li><strong>Титульный лист</strong> — с подписями «разработал», «утверждаю» и «согласовано».</li><li><strong>Пояснительная записка</strong> — исходные данные, характеристика объекта, обоснование решений, указания по производству работ.</li><li><strong>Графическая часть</strong> — стройгенплан или план производства работ, схемы, разрезы, узлы, опасные зоны.</li><li><strong>Технологические карты</strong> — на основные процессы, со схемами операционного контроля.</li><li><strong>Календарный график</strong> и графики движения кадров, машин, материалов.</li><li><strong>Решения по охране труда</strong> и пожарной безопасности, привязанные к объекту.</li><li><strong>Ведомости</strong> объёмов, потребности в материалах, машинах и инструменте.</li><li><strong>Приложения</strong> — схемы строповки, расчёты, перечень скрытых работ.</li></ul></section><section class="section"><h2>Чем отличается наполнение по видам работ</h2><div class="tbl"><table><thead><tr><th>Вид работ</th><th>Специфические разделы проекта</th></tr></thead><tbody><tr><td><a href="/ppr/zemlyanye-raboty/">Земляные работы</a></td><td>Расчёт откосов или крепления выемки, границы ручной разработки, водоотлив, обратная засыпка</td></tr><tr><td><a href="/pprk/">Работы краном (ППРк)</a></td><td>Привязка крана, грузовысотные характеристики, опасные зоны, схемы строповки</td></tr><tr><td><a href="/ppr/raboty-na-vysote/">Работы на высоте (ППРв)</a></td><td>Анкерные устройства, системы безопасности, расчёт запаса высоты, план эвакуации</td></tr><tr><td><a href="/ppr/krovlya/">Кровельные работы</a></td><td>Ограждение периметра, точки крепления СИЗ, пожарная безопасность при наплавлении</td></tr><tr><td><a href="/ppr/demontazh/">Демонтаж и снос</a></td><td>Очерёдность разборки с обоснованием устойчивости, пылеподавление, обращение с отходами</td></tr><tr><td><a href="/ppr/naruzhnye-seti/">Наружные сети</a></td><td>Профили траншеи, охранные зоны, испытания, восстановление благоустройства</td></tr><tr><td><a href="/oati/ppr-dlya-ordera/">ППР для ордера ОАТИ</a></td><td>Границы работ, ограждение, пешеходные обходы, схема восстановления благоустройства</td></tr></tbody></table></div></section><section class="cta-band">
@@ -60,18 +66,23 @@
 <div class="form-card">
 <h3>Расчёт стоимости</h3>
 <p class="fnote">Ответим в течение рабочего дня. Точная цена — в договоре, до начала работы.</p>
-<form action="/send.php" method="post" novalidate>
+<form action="/send.php" method="post" enctype="multipart/form-data" novalidate>
 <input type="hidden" name="page" value="/primery-ppr/">
 <input type="hidden" name="form" value="mid1">
 <div class="field"><label for="mid1-n">Ваше имя</label><input type="text" id="mid1-n" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></div>
 <div class="field"><label for="mid1-p">Телефон</label><input type="tel" id="mid1-p" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
 <div class="field"><label for="mid1-w">Вид работ или объект</label><input type="text" id="mid1-w" name="work" placeholder="например: монтаж металлоконструкций, ТЦ в Химках"></div><div class="field"><label for="mid1-c">Комментарий <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label><textarea id="mid1-c" name="comment" placeholder="Сроки, особенности объекта, что уже есть из документов"></textarea></div>
+<div class="field file"><label for="mid1-f">Файлы: ТЗ, чертежи, фото <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label>
+<input type="file" id="mid1-f" name="files[]" multiple accept=".pdf,.dwg,.dxf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip,.rar,.7z">
+<small>До 5 файлов, до 20 МБ каждый. PDF, DWG, DOC, XLS, JPG, ZIP.</small></div>
+<input type="hidden" name="calc" value="">
 <button type="submit" class="btn btn-w">Рассчитать стоимость</button>
 <p class="agree">Нажимая кнопку, вы соглашаетесь с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных.</p>
 </form>
-<div class="form-alt"><span>Есть готовые документы?</span>
-<a href="mailto:ppr1rf@mail.ru">Пришлите на ppr1rf@mail.ru</a><span>·</span>
-<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a></div>
+<div class="form-alt"><span>Удобнее в мессенджере?</span>
+<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a><span>·</span>
+<a href="https://t.me/+79262567534" rel="nofollow noopener" target="_blank">Telegram</a><span>·</span>
+<a href="mailto:ppr1rf@mail.ru">ppr1rf@mail.ru</a></div>
 </div>
 </section><section class="section"><h2>Примеры выполненных проектов</h2><p>Обезличенные примеры наших проектов мы показываем по запросу: часть материалов передаётся заказчикам на условиях конфиденциальности, и публиковать их без согласия мы не можем.</p><p>Напишите, по какому виду работ нужен пример, — пришлём подходящий комплект с обезличенными данными и объясним, из чего он состоит.</p><p><a class="btn" href="#zayavka">Запросить пример по вашему виду работ</a></p></section><section class="section"><h2>Почему нельзя просто скачать чужой ППР</h2><ul><li>Опасные зоны рассчитываются от высоты подъёма и габаритов конкретного груза — чужие цифры вам не подходят.</li><li>Крепление выемки зависит от фактической геологии и глубины — «по аналогу» это повод для предписания.</li><li>Точки крепления страховочных систем существуют на конкретном объекте, а не вообще.</li><li>Стройгенплан отражает реальные границы, подъезды и окружение вашей площадки.</li><li>Проект утверждает ваш технический руководитель — он отвечает за решения, которые в нём написаны.</li></ul><div class="note warn"><p>Формально скачанный и подписанный чужой проект — это документ, который не защищает ни работника, ни руководителя. При проверке или несчастном случае это видно сразу.</p></div></section><section class="section"><h2>Сроки и стоимость</h2>
 <p>Стоимость зависит от объёма работ, типа объекта, количества разделов и срочности. Базовый ориентир — <strong>от 30 000 ₽</strong>, срок разработки — <strong>от 3 дней</strong>. Точную цену называем после просмотра исходных данных, до подписания договора, и фиксируем в нём.</p>
@@ -90,18 +101,23 @@
 </div><div class="form-card">
 <h3>Расчёт стоимости</h3>
 <p class="fnote">Ответим в течение рабочего дня.</p>
-<form action="/send.php" method="post" novalidate>
+<form action="/send.php" method="post" enctype="multipart/form-data" novalidate>
 <input type="hidden" name="page" value="/primery-ppr/">
 <input type="hidden" name="form" value="fin">
 <div class="field"><label for="fin-n">Ваше имя</label><input type="text" id="fin-n" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></div>
 <div class="field"><label for="fin-p">Телефон</label><input type="tel" id="fin-p" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__"></div>
 <div class="field"><label for="fin-w">Вид работ или объект</label><input type="text" id="fin-w" name="work" placeholder="например: монтаж металлоконструкций, ТЦ в Химках"></div><div class="field"><label for="fin-c">Комментарий <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label><textarea id="fin-c" name="comment" placeholder="Сроки, особенности объекта, что уже есть из документов"></textarea></div>
+<div class="field file"><label for="fin-f">Файлы: ТЗ, чертежи, фото <span style="font-weight:400;color:var(--ink-3)">— не обязательно</span></label>
+<input type="file" id="fin-f" name="files[]" multiple accept=".pdf,.dwg,.dxf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip,.rar,.7z">
+<small>До 5 файлов, до 20 МБ каждый. PDF, DWG, DOC, XLS, JPG, ZIP.</small></div>
+<input type="hidden" name="calc" value="">
 <button type="submit" class="btn btn-w">Рассчитать стоимость</button>
 <p class="agree">Нажимая кнопку, вы соглашаетесь с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных.</p>
 </form>
-<div class="form-alt"><span>Есть готовые документы?</span>
-<a href="mailto:ppr1rf@mail.ru">Пришлите на ppr1rf@mail.ru</a><span>·</span>
-<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a></div>
+<div class="form-alt"><span>Удобнее в мессенджере?</span>
+<a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a><span>·</span>
+<a href="https://t.me/+79262567534" rel="nofollow noopener" target="_blank">Telegram</a><span>·</span>
+<a href="mailto:ppr1rf@mail.ru">ppr1rf@mail.ru</a></div>
 </div></div></section>
 </article></div></main>
 <footer class="site"><div class="wrap"><div class="f-grid">
@@ -116,7 +132,7 @@
 <li><a href="https://wa.me/79262567534" rel="nofollow noopener" target="_blank">WhatsApp</a> · <a href="https://t.me/+79262567534" rel="nofollow noopener" target="_blank">Telegram</a></li>
 </ul></div>
 </div>
-<div class="f-bottom"><span>© ППР ПРО, 2026</span>
+<div class="f-bottom"><span>© ППР1.РФ, 2026</span>
 <a href="/politika-konfidencialnosti/">Политика конфиденциальности</a>
 <a href="/soglasie-na-obrabotku/">Согласие на обработку данных</a>
 <a href="/karta-sajta/">Карта сайта</a>
@@ -126,6 +142,7 @@
 <script>
 document.getElementById('burger').addEventListener('click',function(){var n=document.getElementById('nav');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))});
 </script>
+
 <script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(112671893,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
 </body>
 </html>
