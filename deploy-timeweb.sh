@@ -1,6 +1,7 @@
 #!/bin/bash
 # Обновить сайт ппр1.рф на хостинге Timeweb из GitHub.
-# Запуск с Mac: bash deploy-timeweb.sh
+# Запуск с Mac (вручную, сразу): bash deploy-timeweb.sh
+# Автоматически: cron на Timeweb раз в 5 минут запускает deploy/autodeploy-timeweb.sh
 # Нужен SSH-ключ ~/.ssh/id_ed25519_timeweb, добавленный в ~/.ssh/authorized_keys на хостинге.
 #
 # Хостинг: Timeweb, аккаунт cg50486, сервер bitrix408.timeweb.ru (185.114.247.50)
