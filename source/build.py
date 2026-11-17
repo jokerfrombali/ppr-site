@@ -119,7 +119,9 @@ def main():
           'ErrorDocument 404 /404.html', '', 'RewriteEngine On',
           '# Убрать www и перевести на https',
           'RewriteCond %{HTTP_HOST} ^www\\.(.*)$ [NC]', 'RewriteRule ^(.*)$ https://%1/$1 [R=301,L]',
-          'RewriteCond %{HTTPS} off', 'RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]', '',
+          '# За прокси (Timeweb, Beget) Apache видит http: смотрим и заголовки от nginx',
+          'RewriteCond %{HTTPS} off', 'RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]',
+          'RewriteCond %{HTTP:X-HTTPS} !1', 'RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]', '',
           '# 301 со старых адресов на новую структуру']
     for old, new in REDIRECTS:
         if old == '/index.html':
