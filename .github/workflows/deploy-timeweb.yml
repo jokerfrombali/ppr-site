@@ -1,0 +1,13 @@
+# Автодеплой ппр1.рф на Timeweb после каждого push в main.
+# Дёргает вебхук на хостинге; он сам подтягивает main из GitHub (секреты не нужны).
+name: Deploy to Timeweb
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deploy hook
+        run: curl -fsS --retry 3 --max-time 30 https://xn--1-2tbae.xn--p1ai/_deploy.php
